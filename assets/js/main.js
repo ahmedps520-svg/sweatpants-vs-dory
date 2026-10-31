@@ -1,13 +1,13 @@
 /* ==========================================================
    SWEATPANTS vs DORY — countdown, live predictions, line-ups
-   Kick-off, venue and score live in Supabase (table bet_matches),
+   Kick-off, venue and score live in Mamar's ForgeBase (table bet_matches),
    so setting the date there updates every phone at once.
    ========================================================== */
 (function () {
   'use strict';
 
-  var API = 'https://yhtcciquttbasylejhre.supabase.co/rest/v1/rpc/';
-  var KEY = 'sb_publishable_hMU-atpeUTNXpGos22q6Uw_iURR26sm';   // publishable key: public by design
+  var API = 'https://salmanalghamdi.tailaacd46.ts.net/p/rcqpmobndclconwzwbsw/functions/v1/api/rpc/';
+  var KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJmb3JnZWJhc2UiLCJyZWYiOiJyY3FwbW9ibmRjbGNvbnd6d2JzdyIsInJvbGUiOiJhbm9uIiwia2lkIjoiM2Y4ZTgxNmQtNDJiZS00MmE0LTg2ZjgtYjM3ODk5ZGNlYzFkIiwiaWF0IjoxNzkzNDUwNjM3fQ.Fsi-B6N0kaeq2AH45g3gL0PMCYtuK4aKaIEa7FuoseI';   // anon key: public by design
   var SLUG = 'sweatpants-vs-dory';
   var TZ = 'Asia/Riyadh';
   var MATCH_MINUTES = 90;                                         // for the calendar entry
@@ -126,11 +126,11 @@
   function rpc(name, p) {
     return fetch(API + name, {
       method: 'POST',
-      headers: { 'content-type': 'application/json', apikey: KEY },
-      body: JSON.stringify({ p: p })
+      headers: { 'content-type': 'application/json', apikey: KEY, authorization: 'Bearer ' + KEY },
+      body: JSON.stringify(p)
     }).then(function (r) {
       return r.json().catch(function () { return null; }).then(function (j) {
-        if (!r.ok) { var e = new Error((j && j.message) || ('HTTP ' + r.status)); e.code = j && j.message; throw e; }
+        if (!r.ok) { var e = new Error((j && j.code) || ('HTTP ' + r.status)); e.code = j && j.code; throw e; }
         return j;
       });
     });
